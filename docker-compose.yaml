@@ -9,24 +9,26 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - NEXTAUTH_SECRET=ton_secret
+      - NEXTAUTH_SECRET=k8r0VnOMQAgg1YNSt/M6f06qfOv+BSnujeLyh9oTBX8=
       - NEXTAUTH_URL=https://rdv.webmatrix.fr
-      - DATABASE_URL=postgresql://user:password@postgres:5432/calcom
+      - DATABASE_URL=postgres://calcomdb:NaDyW05UQru0dYt7D4oM8Hn8iAoe4DlBIxFzUbO3gGevCBnVZvRi0rKQSi6PX8HS@calcomdb:5432/postgres
       - GOOGLE_CLIENT_ID=1060926448141-rj36jtrh3dqtbp5v9komn3v0hu0bnoje.apps.googleusercontent.com
       - GOOGLE_CLIENT_SECRET=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
     depends_on:
-      - postgres
+      - calcomdb
 
-  postgres:
-    image: postgres:15
-    container_name: calcom_postgres
+  calcomdb:
+    image: postgres:17-alpine
+    container_name: calcomdb
     restart: always
     environment:
-      POSTGRES_USER=user
-      POSTGRES_PASSWORD=password
-      POSTGRES_DB=calcom
+      POSTGRES_USER: calcomdb
+      POSTGRES_PASSWORD: NaDyW05UQru0dYt7D4oM8Hn8iAoe4DlBIxFzUbO3gGevCBnVZvRi0rKQSi6PX8HS
+      POSTGRES_DB: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
   pgdata:

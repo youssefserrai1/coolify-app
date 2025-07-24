@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  calcom:
+    container_name: calcom
+    image: calcom/cal.com:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXTAUTH_SECRET=ton_secret
+      - NEXTAUTH_URL=https://rdv.webmatrix.fr
+      - DATABASE_URL=postgresql://user:password@postgres:5432/calcom
+      - GOOGLE_CLIENT_ID=1060926448141-rj36jtrh3dqtbp5v9komn3v0hu0bnoje.apps.googleusercontent.com
+      - GOOGLE_CLIENT_SECRET=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
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: calcom_postgres
+    restart: always
+    environment:
+      POSTGRES_USER=user
+      POSTGRES_PASSWORD=password
+      POSTGRES_DB=calcom
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

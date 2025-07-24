@@ -1,3 +1,4 @@
+
 version: "3.9"
 
 services:
@@ -9,11 +10,18 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - NEXTAUTH_SECRET=k8r0VnOMQAgg1YNSt/M6f06qfOv+BSnujeLyh9oTBX8=
+      - NEXTAUTH_SECRET=yK3f9Nm5QxL7zR8vTp0WsYdBuXjFeH2R
       - NEXTAUTH_URL=https://rdv.webmatrix.fr
-      - DATABASE_URL=postgres://calcomdb:NaDyW05UQru0dYt7D4oM8Hn8iAoe4DlBIxFzUbO3gGevCBnVZvRi0rKQSi6PX8HS@calcomdb:5432/postgres
+      - DATABASE_URL=postgresql://calcomdb:NaDyW05UQru0dYt7D4oM8Hn8iAoe4DlBIxFzUbO3gGevCBnVZvRi0rKQSi6PX8HS@calcomdb:5432/postgres
       - GOOGLE_CLIENT_ID=1060926448141-rj36jtrh3dqtbp5v9komn3v0hu0bnoje.apps.googleusercontent.com
       - GOOGLE_CLIENT_SECRET=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
+      - CALCOM_TELEMETRY_DISABLED=true
+      - CALENDSO_ENCRYPTION_KEY=v//1XVp9meUkcKw303icUmCsWuMnnyNolq25UexKHZw=
+      - NEXT_PUBLIC_API_V2_URL=https://rdv.webmatrix.fr/api/v2
+      - NEXT_PUBLIC_WEBAPP_URL=https://rdv.webmatrix.fr
+      - NEXT_PUBLIC_LICENSE_CONSENT=true
+      - NEXT_PUBLIC_WEBSITE_PRIVACY_POLICY_URL=https://webmatrix.fr/politique-de-confidentialite/
+      - NEXT_PUBLIC_WEBSITE_TERMS_URL=https://webmatrix.fr/mentions-legales-2/
     depends_on:
       - calcomdb
 
@@ -32,3 +40,4 @@ services:
 
 volumes:
   pgdata:
+
